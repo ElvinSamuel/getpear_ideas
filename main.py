@@ -9,17 +9,17 @@ import git
 class FakeGit:
     def __init__(self):
         self.project_dir = os.path.realpath(os.path.dirname(__file__))
-        self.min_commits = 45
-        self.max_commits = 113
+        self.min_commits = 3
+        self.max_commits = 25
         self.repo = None
-        self.remote_url = "https://github.com/theveloper-pl/Fake-Git-History.git"
+        self.remote_url = "https://github.com/ElvinSamuel/getpear_ideas.git"
         self.repo_name = self.remote_url.split("/")[-1].split(".")[0]
         print("[Info]: Starting")
 
     def load_repo(self):
         try:
             print("[Info]: Loading git repository")
-            self.repo = git.Repo(os.path.join(self.project_dir, self.repo_name))
+            self.repo = git.Repo(os.path.join(self.project_dir, self.repo_name), search_parent_directories=True)
             print("[Info]: Repo loaded")
         except git.exc.NoSuchPathError:
             print("[Error]: Repo not found. Creating new one from remote-url")
